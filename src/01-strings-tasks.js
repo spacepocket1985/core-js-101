@@ -142,8 +142,8 @@ function removeFirstOccurrences(str, value) {
  *   '<span>' => 'span'
  *   '<a>' => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  return str.substring(1, str.length - 1);
 }
 
 
@@ -157,8 +157,8 @@ function unbracketTag(/* str */) {
  *   'Thunderstruck' => 'THUNDERSTRUCK'
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
-function convertToUpperCase(/* str */) {
-  throw new Error('Not implemented');
+function convertToUpperCase(str) {
+  return str.toUpperCase();
 }
 
 /**
@@ -176,8 +176,8 @@ function convertToUpperCase(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  return str.split(';');
 }
 
 /**
@@ -203,8 +203,25 @@ function extractEmails(/* str */) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  let result = '';
+  let line = '';
+  const heightPartStartLeft = '┌';
+  const heightPartStartRight = '┐';
+  const heightPartEndLeft = '└';
+  const heightPartEndRight = '┘';
+  const heightPart = '│';
+  const widthPart = '─';
+  const widthPartSecond = ' ';
+
+
+  for (let i = 0; i < height; i += 1) {
+    if (i === 0) { line = `${heightPartStartLeft}${widthPart.repeat(width - 2)}${heightPartStartRight}\n`; }
+    if (i === height - 1) { line = `${heightPartEndLeft}${widthPart.repeat(width - 2)}${heightPartEndRight}\n`; }
+    if ((i !== 0) && (i !== height - 1)) { line = `${heightPart}${widthPartSecond.repeat(width - 2)}${heightPart}\n`; }
+    result += line;
+  }
+  return result;
 }
 
 
